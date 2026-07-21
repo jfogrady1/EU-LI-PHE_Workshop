@@ -167,7 +167,7 @@ p3 <- ggplot(data, aes(x = Admixture_Component_1, y = Geno_PC1)) +
     legend.text = element_text(size = 14),
     legend.title = element_blank(),
     legend.position = "right"
-  ) + geom_text(aes(x = 0.15, y = 0.1, label = paste0("Spearman correlation = ", round(admix_pc_cor$estimate, 3))), size = 3.5)
+  ) + annotate('text', x = 0.15, y = 0.1, label = paste0("Spearman correlation = ", round(admix_pc_cor$estimate, 3)), size = 3)
 p3
 
 # PCA and ADMIXTURE information are (relatively) mutually compatible, at least for this ancestry component (K = 2). This is important as it means that the two methods are capturing the same underlying genetic structure in our dataset, which is reassuring.
@@ -206,7 +206,7 @@ p4 <- ggplot(data, aes(y = Holstein_percentage, x = Admixture_Component_1)) +
     legend.position = "right"
   ) + geom_smooth(method = "lm", se = TRUE, color = "steelblue", linewidth = 1) +
   geom_abline(slope = 100, intercept = 0, linetype = "dashed", color = "darkred", size = 0.6, linewidth = 2) +
-  geom_text(aes(x = 0.15, y = 85, label = paste0("Spearman correlation = ", round(admix_holstein_cor$estimate, 3))), size = 3.5)
+  annotate('text', x = 0.15, y = 85, label = paste0("Spearman correlation = ", round(admix_holstein_cor$estimate, 3)), size = 3)
 p4
 
 
@@ -227,3 +227,8 @@ p4 <- p4 + labs(tag = "D")
 
 combined_plot <- (p1 + p3 + p4) / p2
 combined_plot
+
+
+# save the plot
+# Will make it extra wide for the admixture plot
+ggsave("../../results/figures/population_structure.pdf", combined_plot, width = 20, height = 10, units = "in", dpi = 600)
