@@ -52,30 +52,37 @@ Specficially, the dataset consists of the following:
 2. Imputed and filtered WGS data for all _n_ = 123 on chromosome 5 (BTA5)
 
 
-## Installation instructions
+
+## Installation instructionf for Part I
+
+
+
+
+
+## Installation instructions for Part II
 
 
 ### Windows Subsystem for Linux intsallation for Windows users
 
 Approximately 85% of this workshop will be conducted through R/R-Studio, in keeping with the theme of the Summer School. However, there are some tasks that require the use of the command line interface (CLI) or the terminal.
 
-*Those with Apple/Mac devices can skip this step as the terminal is readily available on these machines*.
+*Those with Apple/Mac devices. or with WSL already installed can skip this step and procede to 'Python3.11, pip3.11, python3.11-venv, and tensorQTL installation' as the terminal is readily available on these machines*.
 
 For Windows users, you will need to install a linux interface so that you can use the terminal. This can be done using this link: https://learn.microsoft.com/en-us/windows/wsl/install 
 
  - Open powershell in administrator mode
- - Type the following command: wsl --install
+ - Type the following command: `wsl --install`
  - Set a name (just type it) for your account when it asks: 'Create a default Unix user account:'
  - Set a password by typing it (you won't be able to see the outputs of this so make sure you remember it)
- - Type 'y' or 'n' for data collection question
- - Please execute this command: 'sudo apt-get update' (You will need your password that you set above); This installs some packages/modules/functions that we need to install our package of interest later
- - Please also run the following: sudo apt install build-essential
- - Please also run the following: sudo apt install python3-dev zlib1g-dev libbz2-dev liblzma-dev libcurl4-openssl-dev
+ - Type `y` or `n` for data collection question
+ - Please execute this command: `sudo apt-get update` (You will need your password that you set above); This installs some packages/modules/functions that we need to install our package of interest later
+ - Please also run the following: `sudo apt install build-essential`
+ - Please also run the following: `sudo apt install python3-dev zlib1g-dev libbz2-dev liblzma-dev libcurl4-openssl-dev`
  
 The installation is very straightfoward. Once installed you have a linux terminal on your windows machine. Here you can run and install any linux program. For small data sets this is almost certainly more than enough.
 
 Once the installation is completed, you can close powershell. To relaunch WSL you can
-1. Open powershell in regular mode and type: 'wsl.exe'
+1. Open powershell in regular mode and type: `wsl.exe`
 2. Search for 'ubuntu' in your machine search bar and you should see an application that you can open
 
 Getting experience in the terminal is very important in Genomics Data Science, and in any data science discipline. This is becoming even more pertinent because massive amounts of data can be readily generated generated. In many cases remote high-performance computing (HPC)/cloud computing (e.g., Amazon Web Services AWS) servers are required to store this data. These are often linux/Ubuntu based and require some knowledge of the terminal.
@@ -92,24 +99,41 @@ Don't worry if you cannot install WSL (e.g., due to administrative privilege iss
 Once WSL installation is completed (or if you didn't need to install it), we need to install python3.
 You may have python3 already installed on your Windows machine but because linux applications use a different compiled version of python, we may need to install it within this (WSL) application
 
-- Please check that python3 is installed by typing: 'python3'
-- If it executes, you are good to go! If it says something like 'python3 not found', please install python3 with the following command: sudo apt install python3 (You may need your password for this that you set previously)
+- Please check that python3.11 is installed by typing: `python3.11` (or default `python`)
+- If it executes, you are good to go! If it says something like 'python3.11 not found', please install python3.11 with the following command: `sudo apt install python3.11 python3.11-dev` (You may need your password for this that you set previously)
 
 
 Now we need to install pip3, which is required to install tensorQTL that we will use for the molecular QTL mapping.
-- Please check that you have pip3 installed by typing: 'pip3'
-- If it executes, you are good to go! If it says something like 'python3 not found', please install python3 with the following command: sudo apt install python3-pip (You may need your password for this that you set previously). Type 'Y' when prompted
+- Please check that you have pip3 installed by typing: `pip3 --version`
+- If it executes, you are good to go! If it says something like 'pip3 not found or some other version', please install it with the following command: `sudo apt install python3.11-pip` (You may need your password for this that you set previously). Type 'Y' when prompted
 
 
-Now we need to install python3-venv - this will create a virtual environment that will host all the dependancies associated with tensorqtl (essentially to make it work ok)
+Now we need to install `python3.11-venv` - this will create a virtual environment that will host all the dependancies associated with tensorqtl (essentially to make it work ok)
 
-- Please type the following command: sudo apt install python3-venv (You may need your password) Press Y when prompted
-- Now we need to create the environment and we will do so by typing the following command: python3 -m venv tensorqtl (this might take a minute or two)
-- Now we need to activate the environment and we will do so with the following command: source tensorqtl/bin/activate (you should see 'tensorqtl' appear at the start of your prompt - you are now in this environment)
+- Please type the following command: `sudo apt install python3.11-venv` (You may need your password) Press Y when prompted
+- Now we need to create the environment and we will do so by typing the following command: `python3.11 -m venv tensorqtl` (this might take two or three minues)
+- Now we need to activate the environment and we will do so with the following command: `source tensorqtl/bin/activate` (you should see 'tensorqtl' appear at the start of your prompt - you are now in this environment)
 
-Now we need to install tensorQTL.
+Now we need to install tensorqtl (https://github.com/broadinstitute/tensorqtl).
 
-- Please type the following command: pip3 install tensorqtl (This will take about 10-15 mins)
-- 
+- Please type the following command: `pip3 install tensorqtl` (This will take about 20 mins)
+- You will next need to install pandas-plink: `pip3 install pandas-plink`
 
-For TensorQTL, most of you will not have this installed. You can install it using the following command: 'pip3 install tensorqtl'
+### R on linux and r2py python packages
+The last thing we need for tensorQTL to work is R (as it internally also calls some R packages)
+You may have R already installed on your Windows machine but because linux applications use a different compiled version of python, we may need to install it within this (WSL) application
+
+For TensorQTL, most of you will not have this installed. 
+
+- You can install it using the following command: 'sudo apt install r-base r-base-dev'
+- You can install the r2py python package using the following command: pip install rpy2
+
+### Specific R package for tensorqtl on WSL
+On the terminal execute the following. Remember, you probably have BiocManager installed on your windows machine but you need to also install it for this compiled version of R for linux.
+- Type the command: `R`
+- Within R, type and execute the command `install.packages(BiocManager)`
+- Type `yes` when prompted and `yes` again
+- Type the following command `BiocManager::install(c('qvalue'))`
+- Exit out of R with the command `ctrl Z`.
+
+Verify that tensorqtl is installed with the following: `python3 -m tensorqtl`
