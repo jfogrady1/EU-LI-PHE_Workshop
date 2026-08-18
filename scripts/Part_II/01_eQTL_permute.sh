@@ -1,0 +1,42 @@
+# ---------------------------------------------------------------------------
+# Define variables
+# ---------------------------------------------------------------------------
+BASE_DIR="/home/workspace/jogrady/other_projects/EU-LI-PHE_Workshop"
+DATA_DIR="${BASE_DIR}/data/eQTL"
+RESULTS_DIR="${BASE_DIR}/results/eQTL"
+ 
+# input: phenotype bed (+ index) and covariates
+BED_PHENOTYPE="${DATA_DIR}/ALL.expr_tmm_inv.Chr5.bed.gz"
+BED_PHENOTYPE_TBI="${DATA_DIR}/ALL.expr_tmm_inv.Chr5.bed.gz.tbi"
+COVARIATES_FILE="${DATA_DIR}/ALL.covariates.txt"
+ 
+# params: genotype plink prefix
+PLINK_PREFIX_PATH="${DATA_DIR}/ALL_genotypes_Chr5"
+ 
+# output: cis-QTL results
+OUTPUT_FILE="${RESULTS_DIR}/ALL.cis_qtl.txt.gz"
+OUTPUT_PREFIX="${RESULTS_DIR}/ALL"
+ 
+mkdir -p "${RESULTS_DIR}"
+ 
+# ---------------------------------------------------------------------------
+# Run tensorQTL (cis, permutation pass)
+# ---------------------------------------------------------------------------
+echo "Running tensorQTL cis-permutation mapping"
+echo "  Genotypes (plink prefix): ${PLINK_PREFIX_PATH}"
+echo "  Phenotypes (bed):         ${BED_PHENOTYPE}"
+echo "  Covariates:               ${COVARIATES_FILE}"
+echo "  Output prefix:            ${OUTPUT_PREFIX}"
+echo 
+python3 -m tensorqtl \
+    "${PLINK_PREFIX_PATH}" \
+    "${BED_PHENOTYPE}" \
+    "${OUTPUT_PREFIX}" \
+    --mode cis \
+    --window 1000000 \
+    --seed 1856 \
+    --permutations 5000 \
+    --covariates "${COVARIATES_FILE}" \
+    --fdr 0.05
+echo 
+echo "Done. Expected output: ${OUTPUT_FILE}"

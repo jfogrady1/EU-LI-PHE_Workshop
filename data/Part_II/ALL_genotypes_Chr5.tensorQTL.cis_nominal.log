@@ -1,0 +1,21 @@
+[Aug 14 14:58:05] Running TensorQTL: cis-QTL mapping
+  * WARNING: using CPU!
+  * using seed 1864
+  * reading phenotypes (/home/workspace/jogrady/other_projects/EU-LI-PHE_Workshop/data/eQTL/ALL.expr_tmm_inv.Chr5.bed.gz)
+  * cis-window detected as position ± 1,000,000
+  * reading covariates (/home/workspace/jogrady/other_projects/EU-LI-PHE_Workshop/data/eQTL/ALL.covariates.txt)
+  * reading interaction term(s) (/home/workspace/jogrady/other_projects/EU-LI-PHE_Workshop/data/eQTL/ALL_TB_interaction_input.txt)
+  * loading genotypes
+cis-QTL mapping: nominal associations for all variant-phenotype pairs
+  * 123 samples
+  * 838 phenotypes
+  * 21 covariates
+  * 167527 variants
+  * including 1 interaction term(s)
+    * using 0.05 MAF threshold
+  * cis-window: ±1,000,000
+  * Computing associations
+    Mapping chromosome 5
+    time elapsed: 0.53 min
+done.
+[Aug 14 14:58:41] Finished mapping
