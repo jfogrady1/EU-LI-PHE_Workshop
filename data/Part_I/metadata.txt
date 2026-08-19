@@ -1,4 +1,4 @@
-Sample	Condition	Age	Batch	Admixture_Component_1	Admixture_Component_2	Geno_PC1	Geno_PC2	Holstein%
+Sample	Condition	Age	Batch	Admixture_Component_1	Admixture_Component_2	Geno_PC1	Geno_PC2	Holstein_percentage
 C001	Control	18	1	0.927389	0.07261	0.130258	-0.169238	90.63
 C002	Control	22	2	0.99999	0.00001	0.152233	-0.162799	84.38
 C003	Control	23	1	0.590744	0.40926	0.0389806	-0.0539594	87.50
