@@ -12,10 +12,12 @@
 
 ### Exercise 2
 
-1. Evaluate the significanc of the correlation between _Admixture Component 1_ and _Genotype Principal Component 1_
+1. Evaluate the significanc of the correlation between _Genotype Principal Component 1_ and _Holstein pedigree percentage_
     - First determine if it should be Pearson or Spearman correlation.
+    - perform the calculation with `cor.test`.
+    - Plot the values as a scatter plot.
 
-2. 
+2. How might reseachers with only transcriptomics data infer population strucutre within their data?
 
 ### Exercise 3
 
