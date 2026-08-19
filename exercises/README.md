@@ -33,6 +33,44 @@
 2. Perform the Grpofiler analysis using only genes exhibiting increased expression and seperately decreased expression - you can set the `ordered_query` variable to whatever value you like.
     - Why might it be useful to look at these genes seperately?
 
-3. Change the multiple-testing correction method to determine the impact of this threshold on the number of pathways identified.
+3. Change the multiple-testing correction method to determine the impact of this method on the number of significant pathways identified.
 
 
+## Part II
+
+### Exercise 1
+
+1. How many _cis_-eQTLs/_cis_-eGenes are identified when correcting for mutlitple genes tested chromosome wide using;
+    - The Bonferroni method
+    - The Benjamini-Hochberg method
+
+
+### Exercise 2
+
+1. What is the distribution of _cis_-eQTLs around the transcriptional start site (TSS) (normal, skewed left, skewed right, bimodal)
+
+2. What is the distribution of the effect size of _cis_-eQTLs (normal, skewed left, skewed right, bimodal)
+
+3. Explain why there are no _cis_-eQTLs were identified with an effect size close to 0
+
+4. What is the median effect size estimate of identified _cis_-eQTLs
+
+5. What is the correlation between effect size and;
+    - Distance to TSS
+    - Minor allele frequency (MAF)
+
+
+### Exercise 3
+
+1. Explain how eigen-MT corrects 
+
+2. Why do we need to apply another multiple testing correction accross tested genes?
+
+
+### Exercise 4
+
+1. What is the relationship between the SNP and the expression of _
+
+2. How can this be interpreted in the context of bTB disease
+
+3. Would this SNP be a suitable candidate to breed for/against bTB? Should we assesss the fucntional impact of this using _in vitro_ genome editing?
