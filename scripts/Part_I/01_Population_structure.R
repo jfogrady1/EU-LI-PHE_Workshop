@@ -1,9 +1,3 @@
-##################################################################################
-# EU-LI-PHE COST ACTION Summer School Workshop 2026
-# Epidemiology, Genetics and Modelling for Infectious Disease Control
-# Author: John F. O'Grady
-##################################################################################
-
 ## Summary - This script will help us get an understanding of the genetic structure present in
 # our bovine tuberculosis (bTB) disease dataset of M. bovis-infected (n = 60) and control non-infected cattle (n = 63) 
 # that we will be investigating as part of this workshop. This is important as inter- and 
@@ -11,23 +5,15 @@
 # can confound genome-wide association studies and as such, needs to be controlled for and appreciated.
 
 
-## Note; In many transcriptomic-only experiments (i.e., those with only RNA-seq data available), population structure or genomic variation is not considered, usually because
-# reseachers do not have access to genomic data or cannot make it publicly available upon publication. However, in the case of the former,
-# genomic variation can be inferred from any type of high-throughput sequencing (HTS), if sufficient depth is present (i.e., for any short-read data, variants can be inferred that differ from the reference genome that the data was aligned to).
-# Such approaches have underpinned many of the FarmGTEx initatives, where RNA-seq data has been used to infer genomic variation and population structure in livestock species for the purposes of eQTL mapping (more on that later).
-
-
-# Luckly though, we have the genotype data available in our study that has already been analysed.
-
 
 # Load in libraries
 library(tidyverse)
 library(data.table)
 library(ggplot2)
 
-
+getwd()
 # Read in the data
-data <- read.table('../../data/RNA/metadata.txt', header = TRUE, sep = '\t')
+data <- read.table('data/Part_I/metadata.txt', header = TRUE, sep = '\t')
 
 
 # Inspect the data
@@ -174,7 +160,6 @@ p3
 # However, what is this ancestry component? is it a breed, geographic location, familial, sire-based?
 # We hypothesise that principal component of genomic variation (i.e., PC1) can be explained by Holstein breed percentage
 
-
 hist(data$Holstein_percentage)
 shapiro.test(data$Holstein_percentage)
 
@@ -232,3 +217,6 @@ combined_plot
 # save the plot
 # Will make it extra wide for the admixture plot
 ggsave("../../results/figures/population_structure.pdf", combined_plot, width = 20, height = 10, units = "in", dpi = 600)
+
+## evaluate the correlation between genoPC1 and Holstein%.
+
