@@ -19,7 +19,7 @@ The aim of this workshop is to gain practical experience in performing multi-omi
 
 - Understand the statistical methodologies underpinning cis-eQTL mapping and learn how to conduct an integrative molecular QTL mapping analysis.
 
-- Become familiar with visualising outputs of an integrative genomics analysis in R
+- Become familiar with zing outputs of an integrative genomics analysis in R
 
 - Obtain an appreciation for how one appropriately adjusts for multiple hypothesis tests to mitigate against type I errors (false positives).
 
@@ -43,7 +43,7 @@ This workshop has been divided up into two parts, each with four exercises:
 
 2. Implementation of appropriate multiple testing correction.
 
-3. Visualisation of _cis_-eQTL properties.
+3. Visualization of _cis_-eQTL properties.
 
 4. Interaction eQTL mapping.
 
@@ -64,7 +64,7 @@ All analysis for Part I will be conducted in R/RStudio. This makes it relatively
 
 ### CRAN packages
 You can install the following CRAN packages with this command in R
-- `install.packages(c('tidyverse', 'data.table', 'ggplot2', 'patchwork', 'dplyr', 'gprofiler2', 'ggrepel', 'viridis', 'RcolorBrewer', 'BiocManager'))`
+- `install.packages(c('tidyverse', 'data.table', 'ggplot2', 'patchwork', 'dplyr', 'gprofiler2', 'ggrepel', 'viridis', 'RColorBrewer', 'BiocManager'))`
 
 ### Bioconductor packages
 - `BiocManager::install(c("DESeq2", 'apeglm'))`
@@ -75,13 +75,13 @@ You can install the following CRAN packages with this command in R
 
 ### Windows Subsystem for Linux installation for Windows users
 
-Approximately 85% of this workshop will be conducted through R/R-Studio, in keeping with the theme of the Summer School. However, there are some tasks that require the use of the command line interface (CLI) or the terminal.
+Approximately 85% of this workshop will be conducted through R/RStudio, in keeping with the theme of the Summer School. However, there are some tasks that require the use of the command line interface (CLI) or the terminal.
 
-*Those with Apple/Mac devices or with WSL already installed can skip this step and proceed to 'Python3.11, pip3.11, python3.11-venv, and TensorQTL installation', as the terminal is readily available on these machines.*
+*Those with Apple/Mac devices or with WSL already installed can skip this step and proceed to 'Python3.11, pip3.11, python3.11-venv, and tensorqtl installation', as the terminal is readily available on these machines.*
 
 For Windows users, you will need to install a Linux interface so that you can use the terminal. This can be done using this link: https://learn.microsoft.com/en-us/windows/wsl/install
 
- - Open powershell in administrator mode
+ - Open Powershell in administrator mode
 
  - Type the following command: `wsl --install`
 
@@ -99,10 +99,10 @@ For Windows users, you will need to install a Linux interface so that you can us
  
 The installation is very straightforward. Once installed, you have a Linux terminal on your Windows machine. Here you can run and install any Linux program. For small data sets, this is almost certainly more than enough.
 
-Once the installation is completed, you can close powershell. To relaunch WSL you can
-1. Open powershell in regular mode and type: `wsl.exe`
+Once the installation is completed, you can close Powershell. To relaunch WSL you can
+1. Open Powershell in regular mode and type: `wsl.exe`
 
-2. Search for 'ubuntu' in your machine search bar and you should see an application that you can open
+2. Search for 'Ubuntu' in your machine search bar and you should see an application that you can open
 
 Getting experience in the terminal is very important in genomics data science and in any data science discipline. This is becoming increasingly important because massive amounts of data can now be generated readily. In many cases, remote high-performance computing (HPC) or cloud computing (e.g., Amazon Web Services [AWS]) servers are required to store this data. These are often Linux/Ubuntu-based and require some knowledge of the terminal.
 
@@ -114,7 +114,7 @@ Being trained in the terminal is beyond the scope of this course (we will only u
 Don't worry if you cannot install WSL (e.g., due to administrative privilege issues); all output files will be made available so you can continue with the practical as we go through it together!
 
 
-### Python3, pip3, python3-venv, and TensorQTL installation
+### Python3, pip3, python3-venv, and tensorqtl installation
 
 Once WSL installation is completed (or if you did not need to install it), we need to install Python 3.
 
@@ -125,13 +125,13 @@ You may have Python 3 already installed on your Windows machine, but because Lin
 - If it executes, you are good to go! If it says something like 'python3.11 not found', please install python3.11 with the following command: `sudo apt install python3.11 python3.11-dev` (You may need your password for this that you set previously)
 
 
-Now we need to install pip3, which is required to install tensorQTL that we will use for the molecular QTL mapping.
+Now we need to install pip3, which is required to install tensorqtl that we will use for the molecular QTL mapping.
 - Please check that you have pip3 installed by typing: `pip3 --version`
 
 - If it executes, you are good to go! If it says something like 'pip3 not found or some other version', please install it with the following command: `sudo apt install python3.11-pip` (You may need your password for this that you set previously). Type 'Y' when prompted
 
 
-Now we need to install `python3.11-venv`—this will create a virtual environment that will host all the dependencies associated with TensorQTL (essentially, to make it work correctly).
+Now we need to install `python3.11-venv`—this will create a virtual environment that will host all the dependencies associated with tensorqtl (essentially, to make it work correctly).
 
 - Please type the following command: `sudo apt install python3.11-venv` (You may need your password.) Press Y when prompted.
 
@@ -146,10 +146,9 @@ Now we need to install tensorqtl: (https://github.com/broadinstitute/tensorqtl).
 - You will next need to install pandas-plink: `pip3 install pandas-plink`
 
 ### R on Linux and rpy2 Python package
-The last thing we need for tensorQTL to work is R (as it internally also calls some R packages)
-You may have R already installed on your Windows machine, but because Linux applications use a different compiled version of Python, we may need to install it within this WSL application.
+The last thing we need for `tensorqtl` to work is R (as it internally also calls some R packages). You may have R already installed on your Windows machine, but because Linux applications use a different compiled version of Python, we may need to install it within this WSL application.
 
-For TensorQTL, most of you will not have this installed. 
+For tensorqtl, most of you will not have this installed. 
 
 - You can install it using the following command: 'sudo apt install r-base r-base-dev'
 
