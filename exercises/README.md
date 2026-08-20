@@ -24,9 +24,11 @@
 1. How many genes are significantly differentially expressed at a false discovery rate (FDR) of 0.0001?
     - How many of these genes are exhibiting increased or decreased expression?
 
-2. The default null hypothesis (Ho) tested in a differential expression analysis is that the logarithmic fold change (log2FC) of a gene between bTB+ and bTB- cattle is exactly 0. Taking guidance from the DESEQ2 manual (https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) Evaluate the hypothesis that the log2FC is > 0.5. Hint: This applied when executing the `results` function of the `dds` object.
+2.  Perform the Gprofiler analysis with an input set of more highly significant or less significant DEGs (e.g., padj < 0.00001 | padj < 0.05) and determine if we identify any new pathways are identified
 
-3. Many studies conduct a standard DEA as we have done and impose a post log2FC cut-off (e.g., 1, 2 etc.). Is this statisticaly appropriate to do?
+3.  The default null hypothesis (Ho) tested in a differential expression analysis is that the logarithmic fold change (log2FC) of a gene between bTB+ and bTB- cattle is exactly 0. Taking guidance from the DESEQ2 manual (https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) Evaluate the hypothesis that the log2FC is > 0.5. Hint: This applied when executing the `results` function of the `dds` object.
+
+4. Many studies conduct a standard DEA as we have done and impose a post log2FC cut-off (e.g., 1, 2 etc.). Is this statisticaly appropriate to do?
 
 ### Exercise 4
 
