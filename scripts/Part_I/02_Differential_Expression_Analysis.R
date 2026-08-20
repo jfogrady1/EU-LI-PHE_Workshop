@@ -8,9 +8,9 @@
 # It will also help us identify what pathways the significant DEGs are enriched in, which will help us understand the peripheral host response to M. bovis infection in cattle.
 
 
-#######################
+####################################################################
 # Learning outcomes
-#######################
+####################################################################
 
 # Learn how to conduct a differential expression analysis using DESeq2
 # Understand the importance of correcting for population structure in differential expresssion analysis
@@ -30,16 +30,16 @@ library(gprofiler2)
 library(ggrepel)
 library(viridis)
 library(RColorBrewer)
-
+library(gprofiler2)
 
 # DESeq2 requires 
   # 1. Count matrix (genes are rows, samples are columns)
   # 2. Metadata file  for input into the DESeq2 object - we will use the same file in the population structure analysi
 
 # Read in the data and convert counts to matrix format and metadata to data frame format (required by DESeq2)
-counts <- as.matrix(read.table('../../data/RNA/GSE255724_count_matrix_clean.txt', skip = 0, header = T, sep="\t",row.names=1)) # matrix file
-coldata <- as.data.frame(read.table('../../data/RNA/metadata.txt', sep = '\t', skip = 0, header = T, row.names=1)) # metadata file - note th
-
+counts <- as.matrix(read.table('data/Part_I/GSE255724_count_matrix_clean.txt', skip = 0, header = T, sep="\t",row.names=1)) # matrix file
+coldata <- as.data.frame(read.table('data/Part_I/metadata.txt', sep = '\t', skip = 0, header = T, row.names=1)) # metadata file - note th
+  
 # All rownames of the metadata must match colnames of the count matrix
 # This is required by DeSeq2 to ensure that the correct metadata is associated with the correct sample
 all(rownames(coldata) == colnames(counts))
@@ -63,11 +63,11 @@ keep <- rowSums(counts(ddsMat) >= 6) >= (ncol(counts) * 0.2) # remove low count 
 ddsMat <- ddsMat[keep,]
 
 
-##################################
-##################################
+###############################################################################
+###############################################################################
 # Variance stabilising transformation by DESeq2
-##################################
-##################################
+###############################################################################
+###############################################################################
 
 
 # RNA-seq data is heteroskedastic, meaning that the variance is not constant across the range of mean values. As
@@ -130,11 +130,11 @@ labs(shape = 'Admixture\ncomponent 1') + theme_classic(base_size = 14, base_fami
 
 pca
 
-##################################
-##################################
+###############################################################################
+###############################################################################
 # Differential Expression Anlaysis
-##################################
-##################################
+###############################################################################
+###############################################################################
 
 
 # Perform the differential expression
@@ -157,12 +157,13 @@ res_df$padj <- as.numeric(res_df$padj)
 
 min(res_df$log2FoldChange, na.rm = TRUE)
 # Get the gene symbols for the Ensembl IDs
-library(gprofiler2)
+# Here we are using the gconvert function from gprofiler
 all_symbols <- gconvert(query = rownames(res_df), organism = "btaurus", 
         target="ENSG", mthreshold = Inf, filter_na = FALSE)
 
 
 # If the symbol does not exist, replace with the default ENSGID
+# This can happen if ensembl has updated ENSGID names
 res_df$Symbol <- all_symbols$name 
 res_df$Symbol[is.na(res_df$Symbol)] <- rownames(res_df)[is.na(res_df$Symbol)] # replace NA with the Ensembl ID
 
@@ -212,6 +213,7 @@ scale_y_continuous(limits = c(0,8.2), breaks = c(0,1,2,3,4,5,6,7,8)) +
 geom_hline(yintercept=-log10(0.05), col="black", linetype = "dashed") +
 geom_text_repel(colour = "black", fontface = 4, max.overlaps = 40, size = 3.5) +
 scale_y_continuous(expand = c(0, 0), limits = c(0, 8.5)) +
+#scale_x_continuous(expand = c(0, 0), limits = c(-1, 1)) +
 theme_classic(base_size = 14, base_family = "Helvetica") +
   # Make it look better with the (theme() function)
   theme(
@@ -228,7 +230,7 @@ annotate("text", x=3, y=-log10(1e-8), size = 5, label=paste(DE_up), col="#b2182b
 annotate("text", x=2.66, y=-log10(1e-8), label="\u2191", col="#b2182b", size = 10, fontface = "bold", alpha = 0.8) +
 guides(color = guide_legend(override.aes = list(size = 4)))
 
-Volcano
+#Volcano
 
 
 res_final <- res_df %>%
@@ -242,11 +244,46 @@ dim(res_final)
 head(res_final)
 head(res_df)
 
-##################################
-##################################
+
+
+
+#############################################
+# Exercises
+#1. How many genes are significantly differentially expressed at a false discovery rate (FDR) of 0.0001?
+    #- How many of these genes are exhibiting increased or decreased expression?
+    # Hint: go back to the res_final data frame and filter for padj < 0.0001 and then count the number of genes with log2FoldChange > 0 and log2FoldChange < 0.
+
+#2. The default null hypothesis (Ho) tested in a differential expression analysis is that the logarithmic fold change (log2FC) of a gene between bTB+ and bTB- cattle is exactly 0. Taking guidance from the DESEQ2 manual (https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) Evaluate the hypothesis that the log2FC is > 0.5. Hint: This applied when executing the `results` function of the `dds` object.
+
+#3. Many studies conduct a standard DEA as we have done and impose a post log2FC cut-off (e.g., 1, 2 etc.). Is this statisticaly appropriate to do?
+
+#############################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+
+###############################################################################
+###############################################################################
 # Functional Enrichment Analysis of DEGs using g:Profiler
-##################################
-##################################
+###############################################################################
+###############################################################################
 
 
 # we will reduce the number of genes to highly significant DEGs (padj < 0.01) for functional enrichment analysis
@@ -261,7 +298,7 @@ genes <- list(genes)
 # We are performing an enrichment based on P-value
 results <- gost(query = genes,organism = "btaurus", correction_method = "fdr", ordered_query = T, domain_scope = "known", custom_bg = rownames(res_df), user_threshold = 0.05, sources = c("GO:BP", "GO:CC", "KEGG", "REAC"), evcodes = T)
 
-# Here is a vector of key terms we might be interested in highlighting on the plot
+# Here is a vector of some key terms we might be interested in highlighting on the plot
 # This is arbitrary and can be changed to whatever terms you wish to highlight
 terms <- c("MDA-5 signaling pathway",
         "defense response to virus",
@@ -344,13 +381,18 @@ guides(color = guide_legend(override.aes = list(size = 5)))
 
 library(patchwork)
 Volcano + my_enrichment_plot + plot_annotation(tag_levels = 'A')
-ggsave("../../results/figures/Volcano_Enrichment.pdf", width = 15, height = 10, units = "in", dpi = 600)
 
 
+##########################################################################################
+##########################################################################################
+# 1. Perform the GProfiler analysis setting the `ordered_query` variable to `F` and determine if we identify any new pathways are identified by conducting an _overrepresentation analysis (ORA)_.
 
-#############################################
-# Exercises
-# - 
+# 2. Perform the Gprofiler analysis with an input set of more highly significant or less significant DEGs (e.g., padj < 0.00001 | padj < 0.05) and determine if we identify any new pathways are identified
 
+# 3. Perform the Gprofiler analysis using only genes exhibiting increased expression and seperately decreased expression - you can set the `ordered_query` variable to whatever value you like.
+   # - Why might it be useful to look at these genes seperately?
 
-#############################################
+# 4. Change the multiple-testing correction method to determine the impact of this method on the number of significant pathways identified.
+##########################################################################################
+##########################################################################################
+
