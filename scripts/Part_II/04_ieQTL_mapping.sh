@@ -8,8 +8,8 @@ set -euo pipefail
 # ==============================================================================
 
 BASE_DIR="/home/workspace/jogrady/other_projects/EU-LI-PHE_Workshop"
-DATA_DIR="${BASE_DIR}/data/eQTL"
-RESULTS_DIR="${BASE_DIR}/results/eQTL"
+DATA_DIR="${BASE_DIR}/data/Part_II"
+RESULTS_DIR="${BASE_DIR}/results/Part_II"
 
 mkdir -p "${RESULTS_DIR}"
 

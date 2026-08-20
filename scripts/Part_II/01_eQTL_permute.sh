@@ -2,8 +2,8 @@
 # Define variables
 # ---------------------------------------------------------------------------
 BASE_DIR="/home/workspace/jogrady/other_projects/EU-LI-PHE_Workshop"
-DATA_DIR="${BASE_DIR}/data/eQTL"
-RESULTS_DIR="${BASE_DIR}/results/eQTL"
+DATA_DIR="${BASE_DIR}/data/Part_II"
+RESULTS_DIR="${BASE_DIR}/results/Part_II"
  
 # input: phenotype bed (+ index) and covariates
 BED_PHENOTYPE="${DATA_DIR}/ALL.expr_tmm_inv.Chr5.bed.gz"
@@ -36,7 +36,6 @@ python3 -m tensorqtl \
     --window 1000000 \
     --seed 1856 \
     --permutations 5000 \
-    --covariates "${COVARIATES_FILE}" \
-    --fdr 0.05
+    --covariates "${COVARIATES_FILE}"
 echo 
 echo "Done. Expected output: ${OUTPUT_FILE}"

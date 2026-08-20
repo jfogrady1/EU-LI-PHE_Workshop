@@ -1,9 +1,9 @@
 BASE_DIR="/home/workspace/jogrady/other_projects/EU-LI-PHE_Workshop"
-DATA_DIR="${BASE_DIR}/data/eQTL"
-RESULTS_DIR="${BASE_DIR}/results/eQTL"
+DATA_DIR="${BASE_DIR}/data/Part_II"
+RESULTS_DIR="${BASE_DIR}/results/Part_II"
 
 PERM_RESULTS="${RESULTS_DIR}/ALL.cis_qtl.txt.gz"
-INPUT_SCRIPT="${BASE_DIR}/scripts/02_eQTL_Mapping/eGene_FDR_calculation.R"
+INPUT_SCRIPT="${BASE_DIR}/scripts/Part_II/eGene_FDR_calculation.R"
 
 CORRECTED_RESULTS="${RESULTS_DIR}/ALL.cis_qtl_fdr0.05.txt"
 

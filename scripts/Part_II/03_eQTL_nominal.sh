@@ -3,8 +3,8 @@
 # ---------------------------------------------------------------------------
 
 BASE_DIR="/home/workspace/jogrady/other_projects/EU-LI-PHE_Workshop"
-DATA_DIR="${BASE_DIR}/data/eQTL"
-RESULTS_DIR="${BASE_DIR}/results/eQTL"
+DATA_DIR="${BASE_DIR}/data/Part_II"
+RESULTS_DIR="${BASE_DIR}/results/Part_II"
  
 # input: phenotype bed (+ index) and covariates
 BED_PHENOTYPE="${DATA_DIR}/ALL.expr_tmm_inv.Chr5.bed.gz"
@@ -42,7 +42,7 @@ echo "Done. Expected output: ${PARQUET_FILE}"
 
 OUTPUT_FILE="${RESULTS_DIR}/ALL.cis_qtl_pairs.5.txt.gz"
 
-INPUT_SCRIPT="${BASE_DIR}/scripts/02_eQTL_Mapping/parquet2txt.py"
+INPUT_SCRIPT="${BASE_DIR}/scripts/Part_II/parquet2txt.py"
 
 echo "Converting parquet to .txt"
 
