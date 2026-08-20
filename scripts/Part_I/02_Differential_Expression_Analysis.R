@@ -287,10 +287,12 @@ head(res_df)
 
 
 # we will reduce the number of genes to highly significant DEGs (padj < 0.01) for functional enrichment analysis
+# This will make the computational time slightly faster and 'should' improve the quality of the results.
 res_filtered <- res_final %>% filter(padj < 0.01)
 genes <- rownames(res_filtered)
 
 # convert to a list
+# Gprofiler accepts this format as input
 genes <- list(genes)
 
 # gost is a function from the gprofiler2 package that performs functional enrichment analysis using the g:Profiler web service.
@@ -348,7 +350,9 @@ result_df <- results$result
 result_df <- result_df %>% mutate(alpha_value = ifelse(term_name %in% terms, 1, 0.25))
 
 # Colour palette from the viridis R package
-color_palette <- viridis(5)
+# There are lots of colour palettes out there
+# We will use the package RcolourBrewer to select a colour palette.
+# Usually, I like to use the following website to get an idea of suitable colours: https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3
 
 # Keep the position of the points consistent for reproducibility
 pos <- position_jitter(width = 0.3, seed = 3)
@@ -387,12 +391,13 @@ Volcano + my_enrichment_plot + plot_annotation(tag_levels = 'A')
 ##########################################################################################
 # 1. Perform the GProfiler analysis setting the `ordered_query` variable to `F` and determine if we identify any new pathways are identified by conducting an _overrepresentation analysis (ORA)_.
 
-# 2. Perform the Gprofiler analysis with an input set of more highly significant or less significant DEGs (e.g., padj < 0.00001 | padj < 0.05) and determine if we identify any new pathways are identified
+# 2. Perform the Gprofiler analysis with an input set of more highly significant or less significant DEGs (e.g., padj < 0.00001 OR padj < 0.05) and determine if we identify any new pathways are identified
 
 # 3. Perform the Gprofiler analysis using only genes exhibiting increased expression and seperately decreased expression - you can set the `ordered_query` variable to whatever value you like.
    # - Why might it be useful to look at these genes seperately?
 
 # 4. Change the multiple-testing correction method to determine the impact of this method on the number of significant pathways identified.
+   # - You can look at the options in the gprofiler2 R package documentation (https://cran.r-project.org/web/packages/gprofiler2/gprofiler2.pdf) for more information on the different methods available.
 ##########################################################################################
 ##########################################################################################
 
