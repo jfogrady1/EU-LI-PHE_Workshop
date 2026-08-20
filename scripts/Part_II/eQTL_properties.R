@@ -1,17 +1,28 @@
+
+# Load the libraries
 library(data.table)
 library(tidyverse)
 library(ggplot2)
 
 
+# Read in the eQTL data
 eQTL_data <- fread("results/Part_II/ALL.cis_qtl_fdr0.05.txt")
 
+# Look at the structure
+str(eQTL_data)
+head(eQTL_data, 10)
 
-
+# How many eGenes
 table(eQTL_data$is_eGene)
 
+# Filter for significant eQTLs
 eQTL_data_sig <- eQTL_data %>% filter(is_eGene == TRUE)
 
+######################################
+# Properties of cis-eQTLs.
+######################################
 
+# Here we will plot the distribution of the distance to the TSS for the top cis-eQTLs for each eGene.
 ggplot(eQTL_data_sig, aes(x = start_distance)) +
   geom_histogram(alpha = 0.5, bins = 30, col = "#322525", fill = 'steelblue') +
   labs(x = "Distance to Transcriptional Start Site (TSS)", y = "Count") +
@@ -24,12 +35,15 @@ ggplot(eQTL_data_sig, aes(x = start_distance)) +
     axis.title = element_text(colour = "black", size = 14)
   )
 
+# Questions to consider:
 # Where do cis-eQTLs tend to be located relative to the TSS of their associated gene? 
 # Are they enriched in promoters, enhancers, or other regulatory regions?
 
+
+# Here we will plot the distribution of the effect sizes (slopes) for the top cis-eQTLs for each eGene.
 ggplot(eQTL_data_sig, aes(x = slope)) +
   geom_histogram(alpha = 0.5, bins = 30, col = "#322525", fill = 'steelblue') +
-  labs(x = "Distance to Transcriptional Start Site (TSS)", y = "Count") +
+  labs(x = "Effect Size (Slope)", y = "Count") +
   scale_y_continuous(expand = c(0, 0)) +
   theme_classic(base_size = 14, base_family = "Helvetica") +
   theme(
@@ -39,7 +53,14 @@ ggplot(eQTL_data_sig, aes(x = slope)) +
     axis.title = element_text(colour = "black", size = 14)
   )
 
+# Questions to consider:
+# What is the distribution of effect sizes for the top cis-eQTLs?
+# Why are there no eQTLs with effect sizes close to 0?
 
+
+
+
+# Here we will plot the distribution of the absolute effect sizes (slopes) for the top cis-eQTLs for each eGene.
 ggplot(eQTL_data_sig, aes(y = abs(slope), x = 'Top cis-eQTLs')) +
   geom_boxplot(alpha = 0.5, col = "#322525", fill = 'steelblue', outlier.colour = NA) +
   theme_classic(base_size = 14, base_family = "Helvetica") +
@@ -54,9 +75,14 @@ ggplot(eQTL_data_sig, aes(y = abs(slope), x = 'Top cis-eQTLs')) +
 
 summary(abs(eQTL_data_sig$slope))
 
+# Questions to consider:
+# What is the distribution of absolute effect sizes for the top cis-eQTLs?
+# What is a limitation of our data?
 
 
-# What is the relationship between the effect size of the top cis-eQTL and the distance to the TSS of the associated gene?
+
+# Here we will plot the relationship between the absolute effect sizes (slopes) for the top cis-eQTLs for each eGene
+# and the distance to the TSS
 ggplot(eQTL_data_sig, aes(x = abs(start_distance), y = abs(slope))) +
   geom_point(alpha = 0.5, col = "#322525", fill = 'steelblue') +
   labs(x = "Distance to Transcriptional Start Site (TSS)", y = "Absolute effect size (slope)") +
@@ -69,12 +95,18 @@ ggplot(eQTL_data_sig, aes(x = abs(start_distance), y = abs(slope))) +
     axis.title = element_text(colour = "black", size = 14)
   ) + geom_smooth(method = "lm", col = "red", se = FALSE)
 
+# Questions to consider:
+# What is the relationship between effect size and distance to TSS? Are larger effect sizes associated with variants closer to the TSS?
 
-# What is the relationship between effect size and MAF? Are larger effect sizes associated with rarer variants?
 
+
+# Here we want to see the relationship between absolute effect size and the minor allele frequency (MAF) of the top cis-eQTLs for each eGene.
+# Here we will calculate the MAF.
+# Why are we using 246?
 eQTL_data_sig$MAF <- eQTL_data_sig$ma_count / 246
 
 
+## Do the plotting.
 ggplot(eQTL_data_sig, aes(y = MAF, x = abs(slope))) +
   geom_point(alpha = 0.5, col = "#322525", fill = 'steelblue') +
   labs(x = "Absolute effect size (slope)", y = "Minor Allele Frequency (MAF)") +
@@ -90,8 +122,7 @@ ggplot(eQTL_data_sig, aes(y = MAF, x = abs(slope))) +
 
 
 
-# How many variants are in the window on average?
-
+# Let's get a sense of the number of variants tested in each cis window.
 ggplot(eQTL_data_sig, aes(y = num_var, x = 'Group')) +
   geom_boxplot(alpha = 0.5, col = "#322525", fill = 'steelblue', outlier.colour = NA) +
   labs(y = "Number of variants in cis-window", x = "Count") +
@@ -107,7 +138,7 @@ summary(eQTL_data_sig$num_var)
 
 
 
-# Determine if there are any peliotropic eQTL.
+# Determine if there are any pleiotropic eQTLs.
 
 # Filter for variants found in multiple genes
 pleio <- eQTL_data_sig %>%
@@ -119,7 +150,7 @@ pleio <- eQTL_data_sig %>%
   ) %>%  arrange(desc(n_genes))
 
 
-# plot it as a bar plot for each number of genes.
+# Plot the results as a barplot for each gene.
 ggplot(data.frame(pleio), aes(x = n_genes)) +
   geom_bar(fill = "steelblue") +
   scale_x_continuous(breaks = 1:max(pleio$n_genes)) +
@@ -136,7 +167,11 @@ ggplot(data.frame(pleio), aes(x = n_genes)) +
   )
 
 
-## Plot some eQTLs we are interested
+######################################
+# Visualization of cis-eQTLs.
+######################################
+
+## Plot some eQTLs of interest
 
 # To plot eQTL data we need genotype information (from vcf)
 # We also need residualized expression information (.txt file)
@@ -231,9 +266,10 @@ eQTL_data_sig[eQTL_data_sig$phenotype_id == 'LRRK2', ]
 
 
 # Recent evidence suggests that LRRK2 is a negative regulator of M. tuberculosis phagosome maturation in macrophages.
-# We have Identified a cis-eQTL associated with the expression of this gene and that inhibiting LRRK2 activity in mice increased the ability
-# Of macrophages to control M. tuberculsosi groth
-# Lets see what we can visualize with this. https://pmc.ncbi.nlm.nih.gov/articles/PMC6003659/
+# We have identified a cis-eQTL associated with the expression of this gene, and inhibiting LRRK2 activity in mice increased the ability
+# of macrophages to control M. tuberculosis growth.
+# Let's see what we can visualize with this.
+#https://pmc.ncbi.nlm.nih.gov/articles/PMC6003659/
 
 plot_genotype_boxplot(expr_mat = residualized_expr, 
                       geno_mat = vcf_geno, 
@@ -244,9 +280,10 @@ plot_genotype_boxplot(expr_mat = residualized_expr,
 head(eQTL_data_sig[eQTL_data_sig$phenotype_id == 'CLEC4E', ])
 
 # CLEC4E is a C-type lectin receptor that recognizes mycobacterial components and is involved in the innate immune response to M. tuberculosis infection.
-# It works in combination with TLR4 and is required for the induction of autophagy to restrict and destory M. tuberculosis in macrophages. (https://www.tandfonline.com/doi/full/10.1080/15548627.2019.1658436#abstract)
+# It works in combination with TLR4 and is required for the induction of autophagy to restrict and destroy M. tuberculosis in macrophages.
+#(https://www.tandfonline.com/doi/full/10.1080/15548627.2019.1658436#abstract)
 
-# We have Identified a cis-eQTL for this gene
+# We have identified a cis-eQTL for this gene.
 plot_genotype_boxplot(expr_mat = residualized_expr, 
                       geno_mat = vcf_geno, 
                       gene = "CLEC4E", 
@@ -255,7 +292,7 @@ plot_genotype_boxplot(expr_mat = residualized_expr,
 
 eQTL_data_sig
 
-# Lets look at a negative association
+# Let's look at a negative association
 plot_genotype_boxplot(expr_mat = residualized_expr, 
                       geno_mat = vcf_geno, 
                       gene = "TBC1D15", 
