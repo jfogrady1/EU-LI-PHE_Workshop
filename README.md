@@ -126,10 +126,10 @@ You may have Python 3 already installed on your Windows machine, but because Lin
 
 - Please check that python3.11 is installed by typing: `python3.11` (or default `python`)
 
-- If it executes, you are good to go! If it says something like 'python3.11 not found', please install python3.11 with the following command: `sudo apt install python3.11 python3.11-dev` (You may need your password for this that you set previously)
+- If it executes, you are good to go! If it says something like `python3.11 not found`, please install python3.11 with the following command: `sudo apt install python3.11 python3.11-dev` (You may need your password for this that you set previously)
 
 
-Now we need to install pip3, which is required to install tensorqtl that we will use for the molecular QTL mapping.
+Now we need to install `pip3`, which is required to install tensorqtl that we will use for the molecular QTL mapping.
 - Please check that you have pip3 installed by typing: `pip3 --version`
 
 - If it executes, you are good to go! If it says something like 'pip3 not found or some other version', please install it with the following command: `sudo apt install python3.11-pip` (You may need your password for this that you set previously). Type 'Y' when prompted
@@ -155,7 +155,7 @@ The last thing we need for `tensorqtl` to work is R (as it internally also calls
 
 For tensorqtl, most of you will not have this installed. 
 
-- You can install it using the following command: 'sudo apt install r-base r-base-dev'
+- You can install it using the following command: `sudo apt install r-base r-base-dev`
 
 - You can install the rpy2 Python package using the following command: `pip install rpy2`
 
