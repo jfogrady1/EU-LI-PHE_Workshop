@@ -63,10 +63,13 @@ Specifically, the dataset consists of the following:
 All analysis for Part I will be conducted in R/RStudio. This makes it relatively straightforward to get set up, as you should have some packages installed from Day 1 and Day 2. However, you will need to install the following packages to complete the workshop.
 
 ### CRAN packages
+
 You can install the following CRAN packages with this command in R
+
 - `install.packages(c('tidyverse', 'data.table', 'ggplot2', 'patchwork', 'dplyr', 'gprofiler2', 'ggrepel', 'viridis', 'RColorBrewer', 'BiocManager'))`
 
 ### Bioconductor packages
+
 - `BiocManager::install(c("DESeq2", 'apeglm'))`
 
 - In the scripts, these packages are called when required with the `library()` function.
@@ -99,7 +102,8 @@ For Windows users, you will need to install a Linux interface so that you can us
  
 The installation is very straightforward. Once installed, you have a Linux terminal on your Windows machine. Here you can run and install any Linux program. For small data sets, this is almost certainly more than enough.
 
-Once the installation is completed, you can close Powershell. To relaunch WSL you can
+Once the installation is completed, you can close Powershell. To relaunch WSL you can;
+
 1. Open Powershell in regular mode and type: `wsl.exe`
 
 2. Search for 'Ubuntu' in your machine search bar and you should see an application that you can open
@@ -146,6 +150,7 @@ Now we need to install tensorqtl: (https://github.com/broadinstitute/tensorqtl).
 - You will next need to install pandas-plink: `pip3 install pandas-plink`
 
 ### R on Linux and rpy2 Python package
+
 The last thing we need for `tensorqtl` to work is R (as it internally also calls some R packages). You may have R already installed on your Windows machine, but because Linux applications use a different compiled version of Python, we may need to install it within this WSL application.
 
 For tensorqtl, most of you will not have this installed. 
