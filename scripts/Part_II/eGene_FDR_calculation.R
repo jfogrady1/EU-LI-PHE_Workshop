@@ -14,6 +14,7 @@ cat("  * Number of molecular phenotypes =", nrow(eqtl), "\n")
 cat("  * Correlation between Beta approx. and Empirical p-values =", round(cor(eqtl$pval_beta, eqtl$pval_perm), 4), "\n")
 
 #Run qvalue on pvalues for best signals
+# Lambda paramater is set to 0.85 to determine the number of 
 Q = qvalue(eqtl$pval_beta,lambda=0.85)
 #cat("  * Proportion of significant phenotypes =" , round((1 - Q$pi0) * 100, 2), "%\n")
 
