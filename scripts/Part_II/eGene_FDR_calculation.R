@@ -30,11 +30,10 @@ cat("  * Corrected p-value threshold = ", pthreshold, "\n")
 
 #Calculate nominal pvalue thresholds; binomial
 nthresholds = qbeta(pthreshold, eqtl$beta_shape1, eqtl$beta_shape2, ncp = 0, lower.tail = TRUE, log.p = FALSE)
-str(Q)
 eqtl$qval = Q$qvalues
 eqtl$pval_adj_BH = pval_adj_BH
 eqtl$pval_nominal_threshold = nthresholds
-eqtl$is_eGene = (eqtl$pval_nominal < nthresholds) & (eqtl$pval_adj <= fdr_thresholds)
+eqtl$is_eGene = (eqtl$pval_nominal < nthresholds) & (eqtl$pval_adj_BH <= fdr_thresholds)
 
 print(paste0('number of eGenes identified: ', nrow(eqtl[which(eqtl$is_eGene),])))
 #Output
