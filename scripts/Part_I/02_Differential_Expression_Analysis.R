@@ -117,7 +117,7 @@ scale_color_manual(values = c("#2166ac", "#b2182b")) +
 scale_shape_manual(values = c(15,16,17,18,11,13)) +
 xlab(paste0("PC1: ",percentVar[1],"% variance")) +
 ylab(paste0("PC2: ",percentVar[2],"% variance")) +
-labs(shape = 'Admixture\ncomponent 1') + theme_classic(base_size = 14, base_family = "Helvetica") +
+labs(shape = 'Admixture\ncomponent 1') + theme_classic(base_size = 14) +
   # Make it look better with the (theme() function)
   theme(
     axis.line = element_line(colour = "black", linewidth = 0.6),
@@ -214,7 +214,7 @@ geom_hline(yintercept=-log10(0.05), col="black", linetype = "dashed") +
 geom_text_repel(colour = "black", fontface = 4, max.overlaps = 40, size = 3.5) +
 scale_y_continuous(expand = c(0, 0), limits = c(0, 8.5)) +
 #scale_x_continuous(expand = c(0, 0), limits = c(-1, 1)) +
-theme_classic(base_size = 14, base_family = "Helvetica") +
+theme_classic(base_size = 14) +
   # Make it look better with the (theme() function)
   theme(
     axis.line = element_line(colour = "black", linewidth = 0.6),
@@ -363,7 +363,7 @@ geom_jitter(aes(color = source), alpha = result_df$alpha_value, position = pos, 
 scale_color_brewer(palette = "Dark2" , name = "Source") +  # Apply the color palette
 scale_y_continuous(limits = c(0, 10), breaks = seq(0:10)) +
 labs(y = expression(-log[10](italic(P)[adj])), x = "") +
-theme_classic(base_size = 14, base_family = "Helvetica") +
+theme_classic(base_size = 14) +
   # Make it look better with the (theme() function)
   theme(
     axis.line = element_line(colour = "black", linewidth = 0.6),

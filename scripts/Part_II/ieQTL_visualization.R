@@ -79,7 +79,7 @@ ggplot(df, aes(y = expression, x = genotype, shape = condition, colour = conditi
     axis.title.x = element_text(size = 21, color = "black"),
     panel.grid.minor = element_blank(),
     legend.title = element_text(size = 15, color = "black"),
-    legend.text = element_text(size = 15)) +  theme_classic(base_size = 14, base_family = "Helvetica") +
+    legend.text = element_text(size = 15)) +  theme_classic(base_size = 14) +
   theme(
     axis.line = element_line(colour = "black", linewidth = 0.6),
     axis.ticks = element_line(colour = "black", linewidth = 0.6),

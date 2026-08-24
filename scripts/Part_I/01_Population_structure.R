@@ -37,14 +37,14 @@ data$Condition <- factor(data$Condition, levels = c("Control", "Infected"), labe
 
 
 # PCA plot of genotype data
-# PCA generated from 23,000 SNPs using PLINK v1.9 (https://www.cog-genomics.org/plink/1.9/) 
+# PCA generated from ~23,000 SNPs using PLINK v1.9 (https://www.cog-genomics.org/plink/1.9/) 
 # and the --pca function, which uses the EIGENSTRAT algorithm to perform PCA on genotype data.
 p1 <- ggplot(data, aes(x = Geno_PC1, y = Geno_PC2, color = Condition)) +
   geom_point(size = 3) +
   labs(x = "Principal component 1 (PC1)",
        y = "Principal component 2 (PC2)") +
   guides(color = guide_legend(override.aes = list(size = 5))) +
-  theme_classic(base_size = 14, base_family = "Helvetica") +
+  theme_classic(base_size = 14) +
   scale_color_manual(values = c("bTB-" = "#1f78b4", "bTB+" = "#b2182b")) +
   # Make it look better with the (theme() function)
   theme(
@@ -92,7 +92,7 @@ p2 <- ggplot(data_admixture,
   scale_fill_manual(values = c(
     "Admixture_Component_1" = "#364C54",
     "Admixture_Component_2" = "#94475E"
-  )) + theme_classic(base_size = 14, base_family = "Helvetica") +
+  )) + theme_classic(base_size = 14) +
   scale_y_continuous(expand = c(0, 0)) +
   # Make it look better with the (theme() function)
   theme(
@@ -143,7 +143,7 @@ p3 <- ggplot(data, aes(x = Admixture_Component_1, y = Geno_PC1)) +
   geom_smooth(method = "lm", se = FALSE, color = "black", linewidth = 0.6) +
   labs(x = "Admixture component 1",
        y = "Principal component 1 (PC1)") +
-  theme_classic(base_size = 14, base_family = "Helvetica") +
+  theme_classic(base_size = 14) +
   # Make it look better with the (theme() function)
   theme(
     axis.line = element_line(colour = "black", linewidth = 0.6),
@@ -177,7 +177,7 @@ p4 <- ggplot(data, aes(y = Holstein_percentage, x = Admixture_Component_1)) +
   geom_point(col = 'darkgrey', size = 3) +
   labs(y = "Holstein breed percentage",
        x = "Admixture component 1")  +
-  theme_classic(base_size = 14, base_family = "Helvetica") +
+  theme_classic(base_size = 14) +
   scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, by = 20)) +
   scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, by = 0.2)) +
   # Make it look better with the (theme() function)

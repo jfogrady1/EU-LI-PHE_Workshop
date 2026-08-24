@@ -27,7 +27,7 @@ ggplot(eQTL_data_sig, aes(x = start_distance)) +
   geom_histogram(alpha = 0.5, bins = 30, col = "#322525", fill = 'steelblue') +
   labs(x = "Distance to Transcriptional Start Site (TSS)", y = "Count") +
   scale_y_continuous(expand = c(0, 0)) +
-  theme_classic(base_size = 14, base_family = "Helvetica") +
+  theme_classic(base_size = 14) +
   theme(
     axis.line = element_line(colour = "black", linewidth = 0.6),
     axis.ticks = element_line(colour = "black", linewidth = 0.6),
@@ -45,7 +45,7 @@ ggplot(eQTL_data_sig, aes(x = slope)) +
   geom_histogram(alpha = 0.5, bins = 30, col = "#322525", fill = 'steelblue') +
   labs(x = "Effect Size (Slope)", y = "Count") +
   scale_y_continuous(expand = c(0, 0)) +
-  theme_classic(base_size = 14, base_family = "Helvetica") +
+  theme_classic(base_size = 14) +
   theme(
     axis.line = element_line(colour = "black", linewidth = 0.6),
     axis.ticks = element_line(colour = "black", linewidth = 0.6),
@@ -63,7 +63,7 @@ ggplot(eQTL_data_sig, aes(x = slope)) +
 # Here we will plot the distribution of the absolute effect sizes (slopes) for the top cis-eQTLs for each eGene.
 ggplot(eQTL_data_sig, aes(y = abs(slope), x = 'Top cis-eQTLs')) +
   geom_boxplot(alpha = 0.5, col = "#322525", fill = 'steelblue', outlier.colour = NA) +
-  theme_classic(base_size = 14, base_family = "Helvetica") +
+  theme_classic(base_size = 14) +
   labs (x = "Top cis-eQTLs", y = "Absolute effect size (slope)") +
   theme(
     axis.line = element_line(colour = "black", linewidth = 0.6),
@@ -87,7 +87,7 @@ ggplot(eQTL_data_sig, aes(x = abs(start_distance), y = abs(slope))) +
   geom_point(alpha = 0.5, col = "#322525", fill = 'steelblue') +
   labs(x = "Distance to Transcriptional Start Site (TSS)", y = "Absolute effect size (slope)") +
   scale_y_continuous(expand = c(0, 0)) +
-  theme_classic(base_size = 14, base_family = "Helvetica") +
+  theme_classic(base_size = 14) +
   theme(
     axis.line = element_line(colour = "black", linewidth = 0.6),
     axis.ticks = element_line(colour = "black", linewidth = 0.6),
@@ -110,7 +110,7 @@ eQTL_data_sig$MAF <- eQTL_data_sig$ma_count / 246
 ggplot(eQTL_data_sig, aes(y = MAF, x = abs(slope))) +
   geom_point(alpha = 0.5, col = "#322525", fill = 'steelblue') +
   labs(x = "Absolute effect size (slope)", y = "Minor Allele Frequency (MAF)") +
-  theme_classic(base_size = 14, base_family = "Helvetica") +
+  theme_classic(base_size = 14) +
   theme(
     axis.line = element_line(colour = "black", linewidth = 0.6),
     axis.ticks = element_line(colour = "black", linewidth = 0.6),
@@ -126,7 +126,7 @@ ggplot(eQTL_data_sig, aes(y = MAF, x = abs(slope))) +
 ggplot(eQTL_data_sig, aes(y = num_var, x = 'Group')) +
   geom_boxplot(alpha = 0.5, col = "#322525", fill = 'steelblue', outlier.colour = NA) +
   labs(y = "Number of variants in cis-window", x = "Count") +
-  theme_classic(base_size = 14, base_family = "Helvetica") +
+  theme_classic(base_size = 14) +
   theme(
     axis.line = element_line(colour = "black", linewidth = 0.6),
     axis.ticks = element_line(colour = "black", linewidth = 0.6),
@@ -158,7 +158,7 @@ ggplot(data.frame(pleio), aes(x = n_genes)) +
     x = "Number of eGenes sharing the same lead variant",
     y = "Number of variants",
     title = "Distribution of cis-eQTL pleiotropy"
-  ) + theme_classic(base_size = 14, base_family = "Helvetica") +
+  ) + theme_classic(base_size = 14) +
   theme(
     axis.line = element_line(colour = "black", linewidth = 0.6),
     axis.ticks = element_line(colour = "black", linewidth = 0.6),
@@ -242,7 +242,7 @@ plot_genotype_boxplot <- function(expr_mat, geno_mat, gene, variant,
     ) +
     scale_x_discrete(labels = x_labels) +
     scale_fill_manual(values = colors) +
-    theme_classic(base_size = 14, base_family = "Helvetica") +
+    theme_classic(base_size = 14) +
   theme(
     axis.line = element_line(colour = "black", linewidth = 0.6),
     axis.ticks = element_line(colour = "black", linewidth = 0.6),

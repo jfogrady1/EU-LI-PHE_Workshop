@@ -18,7 +18,7 @@ ggplot(aes(x = Condition, y = delta_PPD), data = IFNG_measurements) +
   # Here we are overlaying the points as a jitter (not just a straight line)
   # Setting the position of the points with seed so that they don't change and move around
    geom_jitter(aes(color = Condition), position = position_jitter(seed = 12, width = 0.2), size = 3) +
-  theme_bw(base_size = 14, base_family = "Helvetica") +
+  theme_bw(base_size = 14) +
   scale_fill_manual(values = c("Control" = "#1f78b4", "Infected" = "#b2182b")) +
   scale_color_manual(values = c("Control" = "#1f78b4", "Infected" = "#b2182b")) +
   theme(
@@ -38,7 +38,7 @@ ggplot(aes(x = Condition, y = delta_PPD), data = IFNG_measurements) +
 # This will help determine what statistical test we will use to compare the two groups
 # Pretty obvious though that the distribution of the two groups is significantly different, with the control group being skewed to the left and the infected group being skewed to the right.
 ggplot(data = IFNG_measurements, aes(x = delta_PPD, fill = Condition)) + facet_wrap(~Condition) + geom_histogram(alpha = 0.5) +
-  theme_classic(base_size = 14, base_family = "Helvetica") +
+  theme_classic(base_size = 14) +
   scale_fill_manual(values = c("Control" = "#1f78b4", "Infected" = "#b2182b")) +
    theme(
     axis.line = element_line(colour = "black", linewidth = 0.6),
@@ -70,7 +70,7 @@ ggplot(aes(x = Condition, y = delta_PPD), data = IFNG_measurements) +
   geom_boxplot(aes(fill = Condition), alpha = 0.5, outlier.colour = NA) +
   labs(x = "Condition", y = "Delta PPD") +
   geom_jitter(aes(color = Condition), position = position_jitter(seed = 12, width = 0.2), size = 3) +
-  theme_bw(base_size = 14, base_family = "Helvetica") +
+  theme_bw(base_size = 14) +
   scale_fill_manual(values = c("Control" = "#1f78b4", "Infected" = "#b2182b")) +
   scale_color_manual(values = c("Control" = "#1f78b4", "Infected" = "#b2182b")) +
   theme(
