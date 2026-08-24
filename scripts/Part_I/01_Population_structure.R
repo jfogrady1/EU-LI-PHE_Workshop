@@ -216,7 +216,8 @@ combined_plot
 
 # save the plot
 # Will make it extra wide for the admixture plot
-ggsave("../../results/figures/population_structure.pdf", combined_plot, width = 20, height = 10, units = "in", dpi = 600)
+# If you want to save this, uncomment the line below but create the directory results/figures/ first
+#ggsave("results/figures/population_structure.pdf", combined_plot, width = 20, height = 10, units = "in", dpi = 600)
 
 ## evaluate the correlation between genoPC1 and Holstein%.
 
