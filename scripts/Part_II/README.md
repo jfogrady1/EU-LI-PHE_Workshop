@@ -17,4 +17,5 @@
     ## Important points
 
     1. Don't forget to activate your source environment for tensorQTL before executing the `.sh` scripts. e.g., `source ~/tensorqtl/bin/activate`.
+    
     2. Don't forget to change your `$BASE_DIR` variable in the script to what ever location you have downloaded the repo into. e.g., I downloaded mine to my Downloads directory. `/mnt/c/Users/jogrady/Downloads/EU-LI-PHE_Workshop-main/EU-LI-PHE_Workshop-main`. And I will set that as my `$BASE_DIR`.
