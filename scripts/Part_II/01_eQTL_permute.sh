@@ -35,7 +35,7 @@ python3 -m tensorqtl \
     --mode cis \
     --window 1000000 \
     --seed 1856 \
-    --permutations 5000 \
+    --permutations 10000 \
     --covariates "${COVARIATES_FILE}"
 echo 
 echo "Done. Expected output: ${OUTPUT_FILE}"
