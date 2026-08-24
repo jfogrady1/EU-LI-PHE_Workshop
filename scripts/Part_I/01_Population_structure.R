@@ -161,10 +161,6 @@ hist(data$Holstein_percentage)
 shapiro.test(data$Holstein_percentage)
 
 
-pc_holstein_cor <- cor.test(data$Geno_PC1, data$Holstein_percentage, method = "spearman", exact = FALSE)
-pc_holstein_cor
-pc_holstein_cor$p.value
-
 admix_holstein_cor <- cor.test(data$Admixture_Component_1, data$Holstein_percentage, method = "spearman", exact = FALSE)
 admix_holstein_cor
 admix_holstein_cor$p.value
