@@ -163,7 +163,8 @@ In the terminal, execute the following. Remember, you probably have BiocManager 
 - Within R, type and execute the command `install.packages("BiocManager")`.
 - Type `yes` when prompted and `yes` again
 - Type the following command `BiocManager::install(c('qvalue'))`
-- Exit out of R with the command `ctrl Z`.
+- Type the following command `install.packages(c('data.table', 'R.utils'))`
+- Exit out of R with the command `ctrl Z`
 
 Verify that tensorqtl is installed with the following: `python3 -m tensorqtl`
 
