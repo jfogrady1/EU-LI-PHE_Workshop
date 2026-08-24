@@ -230,7 +230,7 @@ annotate("text", x=3, y=-log10(1e-8), size = 5, label=paste(DE_up), col="#b2182b
 annotate("text", x=2.66, y=-log10(1e-8), label="\u2191", col="#b2182b", size = 10, fontface = "bold", alpha = 0.8) +
 guides(color = guide_legend(override.aes = list(size = 4)))
 
-#Volcano
+Volcano
 
 
 res_final <- res_df %>%
