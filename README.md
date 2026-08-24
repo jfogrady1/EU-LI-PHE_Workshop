@@ -67,11 +67,15 @@ All analysis for Part I will be conducted in R/RStudio. This makes it relatively
 
 You can install the following CRAN packages with this command in R
 
-- `install.packages(c('tidyverse', 'data.table', 'ggplot2', 'patchwork', 'dplyr', 'gprofiler2', 'ggrepel', 'viridis', 'RColorBrewer', 'BiocManager', 'ggpubr', 'ggdist', 'R.utils', 'vcfR'))`
+- `install.packages(c('tidyverse', 'data.table', 'ggplot2', 'patchwork', 'dplyr', 'gprofiler2', 'ggrepel', 'viridis', 'RColorBrewer', 'BiocManager', 'ggpubr', 'ggdist', 'R.utils', 'vcfR', 'devtools'))`
 
 ### Bioconductor packages
 
 - `BiocManager::install(c("DESeq2", 'apeglm'))`
+
+### devtools packages
+
+- `devtools::install_github('patchwork')`
 
 - In the scripts, these packages are called when required with the `library()` function.
 
