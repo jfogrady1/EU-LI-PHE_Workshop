@@ -5,7 +5,8 @@ library(ggplot2)
 library(gprofiler2)
 library(ggpubr)
 library(ggdist)
-library(gghalves)
+library(vcfR)
+
 
 # Filter for significant ieQTLs
 ieQTL_results <- fread("results/Part_II/ALL_TB_interaction.cis_qtl_top_assoc.txt.gz")
