@@ -62,6 +62,7 @@ Specifically, the dataset consists of the following:
 
 All analysis for Part I will be conducted in R/RStudio. This makes it relatively straightforward to get set up, as you should have some packages installed from Day 1 and Day 2. However, you will need to install the following packages to complete the workshop.
 
+
 ### CRAN packages
 
 You can install the following CRAN packages with this command in R
@@ -126,18 +127,15 @@ You may have Python 3 already installed on your Windows machine, but because Lin
 
 - Please check that python3.11 is installed by typing: `python3.11` (or default `python`)
 
-- If it executes, you are good to go! If it says something like `python3.11 not found`, please install python3.11 with the following command: `sudo apt install python3.11 python3.11-dev` (You may need your password for this that you set previously)
+- If it executes, with python version `3.11.X`, you are good to go! If it says something like `python3.11 not found`, please install python3.11 with the following commands: 
 
+    - `sudo apt install software-properties-common`: Press Y when prompted.
+    - `sudo add-apt-repository ppa:deadsnakes/ppa` : Press Y when prompted.
+    - `sudo apt update`
+    - `sudo apt install python3.11 python3.11-dev` (You may need your password for this that you set previously) : Press Y when prompted.
+    - `sudo apt install python3.11-venv` : Press Y when prompted.
 
-Now we need to install `pip3`, which is required to install tensorqtl that we will use for the molecular QTL mapping.
-- Please check that you have pip3 installed by typing: `pip3 --version`
-
-- If it executes, you are good to go! If it says something like 'pip3 not found or some other version', please install it with the following command: `sudo apt install python3.11-pip` (You may need your password for this that you set previously). Type 'Y' when prompted
-
-
-Now we need to install `python3.11-venv`—this will create a virtual environment that will host all the dependencies associated with tensorqtl (essentially, to make it work correctly).
-
-- Please type the following command: `sudo apt install python3.11-venv` (You may need your password.) Press Y when prompted.
+- Now we need to change to the home directory and you can change directory with the `cd` command. The tilda sign `~` is shorthand notation for home. `cd ~`.
 
 - Now we need to create the environment by typing the following command: `python3.11 -m venv tensorqtl` (this might take two or three minutes).
 
@@ -155,18 +153,18 @@ The last thing we need for `tensorqtl` to work is R (as it internally also calls
 
 For tensorqtl, most of you will not have this installed. 
 
-- You can install it using the following command: `sudo apt install r-base r-base-dev`
+- You can install it using the following command: `sudo apt install r-base r-base-dev`.
 
-- You can install the rpy2 Python package using the following command: `pip install rpy2`
+- You can install the rpy2 Python package using the following command: `pip install rpy2`.
 
 ### Specific R package for tensorqtl on WSL
 In the terminal, execute the following. Remember, you probably have BiocManager installed on your Windows machine, but you also need to install it for this compiled version of R for Linux.
-- Type the command: `R`
-- Within R, type and execute the command `install.packages("BiocManager")`
+- Type the command: `R`.
+- Within R, type and execute the command `install.packages("BiocManager")`.
 - Type `yes` when prompted and `yes` again
 - Type the following command `BiocManager::install(c('qvalue'))`
 - Exit out of R with the command `ctrl Z`.
 
 Verify that tensorqtl is installed with the following: `python3 -m tensorqtl`
 
-*You should now be ready to do the practical*
+*You should now be ready to do the practical!*
