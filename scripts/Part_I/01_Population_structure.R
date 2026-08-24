@@ -4,14 +4,11 @@
 # intra-breed genomic variation exists, which can impact the host response to infectious disease challenge,
 # can confound genome-wide association studies and as such, needs to be controlled for and appreciated.
 
-
-
 # Load in libraries
 library(tidyverse)
 library(data.table)
 library(ggplot2)
 
-getwd()
 # Read in the data
 data <- read.table('data/Part_I/metadata.txt', header = TRUE, sep = '\t')
 
