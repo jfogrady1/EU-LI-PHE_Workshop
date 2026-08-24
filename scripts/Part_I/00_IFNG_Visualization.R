@@ -6,7 +6,7 @@ library(ggplot2)
 
 # Read in the data
 # fread comes from the data.table package
-IFNG_measurements <- fread("../../data/Part_I/IGRA_measurements.txt", header = TRUE, sep = "\t")
+IFNG_measurements <- fread("data/Part_I/IGRA_measurements.txt", header = TRUE, sep = "\t")
 
 
 
