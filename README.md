@@ -71,7 +71,7 @@ You can install the following CRAN packages with this command in R
 
 ### Bioconductor packages
 
-- `BiocManager::install(c("DESeq2", 'apeglm'))`
+- `BiocManager::install(c('DESeq2', 'apeglm', 'qvalue'))`
 
 ### devtools packages
 
