@@ -85,7 +85,7 @@ You can install the following CRAN packages with this command in R
 
 Approximately 85% of this workshop will be conducted through R/RStudio, in keeping with the theme of the Summer School. However, there are some tasks that require the use of the command line interface (CLI) or the terminal.
 
-*Those with Apple/Mac devices or with WSL already installed can skip this step and proceed to 'Python3.11, pip3.11, python3.11-venv, and tensorqtl installation', as the terminal is readily available on these machines.*
+*Those with Apple/Mac devices, please proceed to MACOS installation. Those with WSL already installed can skip this step and proceed to 'Python3.11, pip3.11, python3.11-venv, and tensorqtl installation', as the terminal is readily available on these machines.*
 
 For Windows users, you will need to install a Linux interface so that you can use the terminal. This can be done using this link: https://learn.microsoft.com/en-us/windows/wsl/install
 
@@ -172,4 +172,38 @@ In the terminal, execute the following. Remember, you probably have BiocManager 
 
 Verify that tensorqtl is installed with the following: `python3 -m tensorqtl`
 
-*You should now be ready to do the practical!*
+*You should now be ready to do the practical!* 
+
+
+## MACOS installation
+
+You should already have `R` installed on your machine from Monday and Tuesday.  **N.B if you have `R` >= 4.6, this installation will not work and you will need to downgrade to `R` 4.5 or equivalent**
+
+We need to do the following:
+
+- Make sure you have `brew` installed with the following command: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`. You can check first by opening the terminal and typing `brew --version`. Exectue the commands it tells you to execute at the end of the installation procedure
+
+- Execute the following to install python3.11 (required for tensorqtl) `brew install python@3.11`
+
+Create and activate a tensorqtl environment with the following
+
+- `cd ~`
+
+- `python3.11 -m venv tensorqtl`
+
+- `source tensorqtl/bin/activate`
+
+Now we need to install tensorqtl and pandas-plink and rpy2 and R packages
+- `pip install tensorqtl` 
+
+- `pip install pandas-plink`
+
+- `pip install rpy2`
+
+
+Type `R` then execute the following in R: `install.packages("BiocManager")` followed by   `BiocManager::install(c('qvalue'))` (type `n` when it asks to update packages). Then execute `install.packages(c('data.table', 'R.utils'))`
+
+Verify that tensorqtl is installed with the following: `python3 -m tensorqtl`
+
+*You should now be ready to do the practical!* 
+
